@@ -7,10 +7,11 @@ const {gql, ApolloServer} = require ( "apollo-server")
  * String
  * Boolean
  * ID
+ * 
  */
 
 
-const typeDefs = gql`
+const typeDefs = gql` 
     type Query {
         idade: Int
         salario: Float
@@ -20,7 +21,25 @@ const typeDefs = gql`
     }
 `;
 
-const resolvers = {};
+const resolvers = {
+    Query: {
+        idade(){ 
+            return 30; 
+        },
+        salario() {
+            return 5000.50;
+        },
+        nome() { 
+            return "João"
+        },
+        ativo() {
+            return true
+        },
+        id() {
+            return "12345"
+        }
+    }
+};
 
 const server = new ApolloServer({
     typeDefs,
@@ -29,5 +48,5 @@ const server = new ApolloServer({
 
 server.listen("4000").then(({url}) => {
 
-    console.log(`🚀 Server ready at ${url}`);
+    console.log(`🚀 ok rodando ${url}`);
 })
